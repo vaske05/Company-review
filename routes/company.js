@@ -5,12 +5,12 @@ var Company = require('../models/company');
 
 
 module.exports = (app) => {
-    
+
     //--
     app.get('/company/create', (req, res) => {
 
         var success = req.flash('success');
-        
+
         res.render('company/company', { title: 'Company Registration', user: req.user,
         success:success, noErrors: success.length > 0 });
     });
@@ -19,7 +19,7 @@ module.exports = (app) => {
     app.post('/company/create', (req,res) => {
 
         var newCompany = new Company();
-        
+
         newCompany.name = req.body.name;
         newCompany.address = req.body.address;
         newCompany.city = req.body.city;
@@ -74,12 +74,20 @@ module.exports = (app) => {
         console.log(result);
         res.render('company/companies',{ title: 'All Companies || RateMe', user: req.user, data: result });
       });
-      
+
     });
-    
+
     app.get('/company-profile/:id', (req, res) => {
         res.render('company/company-profile', { title: 'Company Profile || RateMe', user: req.user, id: req.params.id });
-        
+
+    });
+
+    app.get('/company/register-employee/:id', (req, res) => {
+        Company.findOne( {'_id':req.params.id}, (err, data) => {
+          res.render('company/register-employee', { title: 'Register Employee || RateMe', user: req.user, data: data });
+
+        })
+
     });
 
 
