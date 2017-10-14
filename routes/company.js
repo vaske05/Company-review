@@ -1,8 +1,10 @@
 var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
-var Company = require('../models/company');
+var async = require('async');
 
+var Company = require('../models/company');
+var User = require('../models/user');
 
 module.exports = (app) => {
 
@@ -85,11 +87,27 @@ module.exports = (app) => {
     app.get('/company/register-employee/:id', (req, res) => {
         Company.findOne( {'_id':req.params.id}, (err, data) => {
           res.render('company/register-employee', { title: 'Register Employee || RateMe', user: req.user, data: data });
-
         })
-
     });
 
-
+    app.post('/company/register-employee/:id', (req, res, next) => {
+      async.parallel([
+        function(callback){
+          Company.update({
+            '_id': req.params.id,
+            'employees.employeeID': { $ne: req.user._id }
+          },
+          {
+            $push: { employees: {employeeID: req.user._id, employeeFullName: req.user.fullname, employeeRole_ req.body.role} }
+          }, (err, count) => {
+            if(err){
+              return next(err);
+            }
+            callback(err, count);
+          }
+        )
+        }
+      ])
+    });
 
 }
