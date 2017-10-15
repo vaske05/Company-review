@@ -32,8 +32,7 @@ module.exports = (app) => {
 
         newCompany.save((err) => {
             if(err){
-                console.log("USlo U ERROR(POST)!");
-                console.log(err);
+
             }
 
             req.flash('success', 'Company data has been added.');
@@ -73,7 +72,7 @@ module.exports = (app) => {
     //--
     app.get('/companies', (req,res) => {
       Company.find({}, (err, result) => { //Get all data(companies) from database
-        console.log(result);
+        //console.log(result);
         res.render('company/companies',{ title: 'All Companies || RateMe', user: req.user, data: result });
       });
 
