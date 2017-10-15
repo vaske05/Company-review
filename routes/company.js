@@ -90,6 +90,7 @@ module.exports = (app) => {
         })
     });
 
+    //User role update
     app.post('/company/register-employee/:id', (req, res, next) => {
       async.parallel([
         function(callback){
@@ -98,16 +99,36 @@ module.exports = (app) => {
             'employees.employeeID': { $ne: req.user._id }
           },
           {
-            $push: { employees: {employeeID: req.user._id, employeeFullName: req.user.fullname, employeeRole_ req.body.role} }
+            $push: { employees: {employeeID: req.user._id, employeeFullName: req.user.fullname, employeeRole: req.body.role} }
           }, (err, count) => {
             if(err){
               return next(err);
             }
             callback(err, count);
-          }
-        )
+          });
+        },
+        function(callback){
+          async.waterfall([
+            function(callback){
+              Company.findOne({'_id': req.params.id}, (err,data) => {
+                callback(err, data);
+              });
+            },
+            function(data, callback){
+              User.findOne({'_id': req.user._id}, (err, result) => {
+                result.role = req.body.role;
+                result.company.name = data.name;
+                result.company.image = data.image;
+
+                result.save((err) => {
+                  res.redirect('/home');
+
+                });
+              });
+            }
+          ]);
         }
-      ])
-    });
+      ]); // parallel end
+    }); //User role update end
 
 }
