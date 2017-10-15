@@ -80,14 +80,16 @@ module.exports = (app) => {
     });
 
     app.get('/company-profile/:id', (req, res) => {
-        res.render('company/company-profile', { title: 'Company Profile || RateMe', user: req.user, id: req.params.id });
+        Company.findOne( {'_id':req.params.id}, (err, data) => {
+          res.render('company/company-profile', { title: 'Company Profile || RateMe', user: req.user, id: req.params.id, data: data });
+        });
 
     });
 
     app.get('/company/register-employee/:id', (req, res) => {
         Company.findOne( {'_id':req.params.id}, (err, data) => {
           res.render('company/register-employee', { title: 'Register Employee || RateMe', user: req.user, data: data });
-        })
+        });
     });
 
     //User role update
