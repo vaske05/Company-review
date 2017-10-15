@@ -44,8 +44,9 @@ app.use(passport.session());
 
 require('./routes/user')(app, passport);
 require('./routes/company')(app);
+require('./routes/review')(app);
 
 var port = 3000;
 app.listen(port, function(){
-    console.log('App running on port:' + port);
+    console.log('Application running on port:' + port);
 });

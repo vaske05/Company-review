@@ -1,8 +1,7 @@
-//User Schema 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-
+//User Schema
 var userSchema = mongoose.Schema({
     fullname: { type: String, require: true },
     email: { type: String, require: true },
@@ -19,12 +18,12 @@ var userSchema = mongoose.Schema({
 });
 
 //Encryption for password
-userSchema.methods.encryptPassword = (password) => {  
-    return bcrypt.hashSync(password); 
+userSchema.methods.encryptPassword = (password) => {
+    return bcrypt.hashSync(password);
 }
 
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password,this.password); //Ovde je problem ali ne znam zasto(REŠENO)
 }
 
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.model('User', userSchema);
