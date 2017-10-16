@@ -8,6 +8,7 @@ $(document).ready(function(){
     $('#3_star').attr('src', '/images/star_off.png');
     $('#4_star').attr('src', '/images/star_off.png');
     $('#5_star').attr('src', '/images/star_off.png');
+    $('#showTittle').html('Bad');
   },
   function(){
   $('#1_star').attr('src', '/images/star_off.png');
@@ -15,6 +16,7 @@ $(document).ready(function(){
   $('#3_star').attr('src', '/images/star_off.png');
   $('#4_star').attr('src', '/images/star_off.png');
   $('#5_star').attr('src', '/images/star_off.png');
+  $('#showTittle').html('');
 });
 
 $('#2_star').hover(
@@ -24,6 +26,7 @@ $('#2_star').hover(
   $('#3_star').attr('src', '/images/star_off.png');
   $('#4_star').attr('src', '/images/star_off.png');
   $('#5_star').attr('src', '/images/star_off.png');
+  $('#showTittle').html('Poor');
 },
 function(){
 $('#1_star').attr('src', '/images/star_off.png');
@@ -31,6 +34,7 @@ $('#2_star').attr('src', '/images/star_off.png');
 $('#3_star').attr('src', '/images/star_off.png');
 $('#4_star').attr('src', '/images/star_off.png');
 $('#5_star').attr('src', '/images/star_off.png');
+$('#showTittle').html('');
 });
 
 $('#3_star').hover(
@@ -40,6 +44,7 @@ $('#3_star').hover(
   $('#3_star').attr('src', '/images/star_on.png');
   $('#4_star').attr('src', '/images/star_off.png');
   $('#5_star').attr('src', '/images/star_off.png');
+  $('#showTittle').html('Fair');
 },
 function(){
 $('#1_star').attr('src', '/images/star_off.png');
@@ -47,6 +52,7 @@ $('#2_star').attr('src', '/images/star_off.png');
 $('#3_star').attr('src', '/images/star_off.png');
 $('#4_star').attr('src', '/images/star_off.png');
 $('#5_star').attr('src', '/images/star_off.png');
+$('#showTittle').html('');
 });
 
 $('#4_star').hover(
@@ -56,6 +62,7 @@ $('#4_star').hover(
   $('#3_star').attr('src', '/images/star_on.png');
   $('#4_star').attr('src', '/images/star_on.png');
   $('#5_star').attr('src', '/images/star_off.png');
+  $('#showTittle').html('Good');
 },
 function(){
 $('#1_star').attr('src', '/images/star_off.png');
@@ -63,6 +70,7 @@ $('#2_star').attr('src', '/images/star_off.png');
 $('#3_star').attr('src', '/images/star_off.png');
 $('#4_star').attr('src', '/images/star_off.png');
 $('#5_star').attr('src', '/images/star_off.png');
+$('#showTittle').html('');
 });
 
 $('#5_star').hover(
@@ -72,6 +80,7 @@ $('#5_star').hover(
   $('#3_star').attr('src', '/images/star_on.png');
   $('#4_star').attr('src', '/images/star_on.png');
   $('#5_star').attr('src', '/images/star_on.png');
+  $('#showTittle').html('Excellent');
 },
 function(){
 $('#1_star').attr('src', '/images/star_off.png');
@@ -79,6 +88,7 @@ $('#2_star').attr('src', '/images/star_off.png');
 $('#3_star').attr('src', '/images/star_off.png');
 $('#4_star').attr('src', '/images/star_off.png');
 $('#5_star').attr('src', '/images/star_off.png');
+$('#showTittle').html('');
 });
 
   $('#1_star').on('click', function(){
@@ -91,6 +101,7 @@ $('#5_star').attr('src', '/images/star_off.png');
       $('#3_star').attr('src', '/images/star_off.png');
       $('#4_star').attr('src', '/images/star_off.png');
       $('#5_star').attr('src', '/images/star_off.png');
+      $('#showTittle').html('Bad');
     });
   });
 
@@ -104,6 +115,7 @@ $('#5_star').attr('src', '/images/star_off.png');
       $('#3_star').attr('src', '/images/star_off.png');
       $('#4_star').attr('src', '/images/star_off.png');
       $('#5_star').attr('src', '/images/star_off.png');
+      $('#showTittle').html('Poor');
     });
   });
 
@@ -117,6 +129,7 @@ $('#5_star').attr('src', '/images/star_off.png');
       $('#3_star').attr('src', '/images/star_on.png');
       $('#4_star').attr('src', '/images/star_off.png');
       $('#5_star').attr('src', '/images/star_off.png');
+      $('#showTittle').html('Fair');
     });
   });
 
@@ -130,6 +143,7 @@ $('#5_star').attr('src', '/images/star_off.png');
       $('#3_star').attr('src', '/images/star_on.png');
       $('#4_star').attr('src', '/images/star_on.png');
       $('#5_star').attr('src', '/images/star_off.png');
+      $('#showTittle').html('Good');
     });
   });
 
@@ -143,6 +157,7 @@ $('#5_star').attr('src', '/images/star_off.png');
       $('#3_star').attr('src', '/images/star_on.png');
       $('#4_star').attr('src', '/images/star_on.png');
       $('#5_star').attr('src', '/images/star_on.png');
+      $('#showTittle').html('Excellent');
     });
   });
 
@@ -160,6 +175,20 @@ $('#5_star').attr('src', '/images/star_off.png');
     }
 
     if(valid === true){
+       $.ajax({
+         url: '/review'+id,
+         type: 'POST',
+         data: {
+           clickedValue: clickedValue,
+           review: review,
+           sender: sender
+         },
+         success: function(){
+           $('#review').val('');
+           $('#sender').val('');
+           $('#id').val('');
+         }
+       });
 
     } else {
       return false;
