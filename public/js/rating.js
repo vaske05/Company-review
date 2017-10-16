@@ -176,7 +176,7 @@ $('#showTittle').html('');
 
     if(valid === true){
        $.ajax({
-         url: '/review'+id,
+         url: '/review/'+id,
          type: 'POST',
          data: {
            clickedValue: clickedValue,
