@@ -88,11 +88,11 @@
                               <div class="innerDiv">
 
                                   <div class="col-md-3" style="margin-bottom:30px;">
-                                      <img src="http://placehold.it/270x270" width="270px" height="270px" alt="">
-                                      <h3>Company Name</h3>
-                                      <i class="fa fa-map-marker">City, Country</i><br>
-                                      <i class="fa fa-building-o">Sector</i><br>
-                                      <i class="fa fa-external-link"><a href="http://www.testing.com" target="_blank">www.testing.com</a></i><br><br>
+                                      <img src="/uploads/<%= data.image %>" width="250px" height="250px" alt="" style="border: 1px solid #ddd;border-radius: 4px;">
+                                      <h3><%= data.name %></h3>
+                                      <i class="fa fa-map-marker"><%= data.city %>, <%= data.country %></i><br>
+                                      <i class="fa fa-building-o"><%= data.sector %></i><br>
+                                      <i class="fa fa-external-link"><a href="http://<%=data.website %>" target="_blank"><%= data.website %></a></i><br><br>
 
                                       <a href="/review/<%= data._id %>" class="btn btn-success">Rate this company</a><br><br>
                                       <a href="" class="btn btn-info">View company Employees</a><br>
@@ -163,5 +163,6 @@
                 $("#wrapper").toggleClass("toggled");
             })
             </script>
+            <script type="text/javascript" src="/js/jquery.raty.js"></script>
             </body>
 </html>
