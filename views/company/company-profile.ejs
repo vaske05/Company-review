@@ -104,9 +104,7 @@
                                         <h2>You are an employee.</h2>
                                       <% } %>
 
-                                      <h3>Avarage Rating</h3>
-                                      <h5 class="star"></h5>
-                                      <p>Based on 5 review(s)</p>
+                                      
                                   </div>
 
                                   <div class="col-md-9 colDiv">
@@ -115,7 +113,7 @@
                                           <div class="col-md-4">
                                               <div class="count">
                                                   <h1>
-                                                      5
+                                                      <%= data.ratingNumber.length %>
                                                   </h1>
                                                   <h2>Raiting</h2>
                                                   <h3>Total raitings recived</h3>
@@ -125,7 +123,7 @@
                                           <div class="col-md-4">
                                               <div class="count">
                                                   <h1>
-                                                      25
+                                                      <%= data.ratingSum %>
                                                   </h1>
                                                   <h2>Total Stars</h2>
                                                   <h3>Total stars recived</h3>
@@ -135,18 +133,43 @@
                                           <div class="col-md-4">
                                               <div class="count">
                                                   <h1>
-                                                      <span class="star"></span>
+                                                      <span class="star" data-score="<%= average %>"></span>
                                                   </h1>
-                                                  <h2>Avarage Rating (5.5)</h2>
-                                                  <h3>Based on 5 reviews</h3>
+                                                  <h2>Avarage Rating (<%= average %>)</h2>
+                                                  <h3>Based on <%= data.ratingNumber.length %> review(s)</h3>
                                               </div>
                                           </div><br><br>
                                           <div class="col-md-12 header">
-                                              <h2>Reviews (5)</h2>
+                                              <h2>Reviews (<%= data.ratingNumber.length %>)</h2>
                                               <div class="linkDiv">
                                                   <a href="" class="btn btn-success">Write Review</a>
                                               </div>
                                           </div>
+
+                                          <% if(data.companyRating.length > 0) { %>
+                                            <% data.companyRating.forEach(function(val) { %>
+                                              <div class="col-md-12 reviewDiv">
+                                                <div class="col-md-2">
+                                                  <img src="/uploads/<%= val.companyImage %>" alt="" width="100px" height="100px">
+                                                </div>
+
+                                                <div class="col-md-8">
+                                                  <h1>
+                                                    <a href="#"><%= val.companyName %></a> |
+                                                    <%= val.userFullName %>
+                                                  </h1>
+                                                  <h2><%= val.userRole %></h2>
+                                                  <p><%= val.userReview %></p>
+                                                </div>
+
+                                                <div class="col-md-2" style="width:150px">
+                                                  <h1>Rating</h1>
+                                                  <span class="star" data-score="<%= val.userRating %>"></span>
+                                                </div>
+                                              </div>
+                                            <% }) %>
+                                          <% } %>
+
 
                                       </div>
                                   </div>
@@ -164,5 +187,17 @@
             })
             </script>
             <script type="text/javascript" src="/js/jquery.raty.js"></script>
+            <script type="text/javascript">
+              $(document).ready(function(){
+                $.fn.raty.defaults.path = '/images/';
+                $('.star').raty({
+                  readOnly: true,
+                  size: 50,
+                  score: function(data){
+                    return $(this).attr('data-score');
+                  }
+                });
+              });
+            </script>
             </body>
 </html>
