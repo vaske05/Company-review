@@ -73,11 +73,9 @@ module.exports = (app) => {
 
     //--
     app.get('/companies', (req,res) => {
-
       Company.find({}, (err, result) => { //Get all data(companies) from database
-        console.log(result);
+        //console.log(result);
         //var avg = arrayAverage(result.ratingSum);
-
         res.render('company/companies',{ title: 'All Companies || RateMe', user: req.user, data: result });
       });
 
@@ -86,12 +84,9 @@ module.exports = (app) => {
     app.get('/company-profile/:id', (req, res) => {
         Company.findOne( {'_id':req.params.id}, (err, data) => {
           var avg = arrayAverage(data.ratingNumber);
-
-          console.log(avg);
-
+          //console.log(avg);
           res.render('company/company-profile', { title: 'Company Profile || RateMe', user: req.user, id: req.params.id, data: data, average: avg });
         });
-
     });
 
     app.get('/company/register-employee/:id', (req, res) => {
