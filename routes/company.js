@@ -140,7 +140,14 @@ module.exports = (app) => {
       Company.findOne({'name': req.params.name}, (err, data) => {
         res.render('company/employees', {title: 'Company Employees', user: req.user, data: data});
       });
+    });
 
+    app.get('/leaderboard', (req,res) => {
+      Company.find({}, (err, result) => { //Get all data(companies) from database
+        //console.log(result);
+        //var avg = arrayAverage(result.ratingSum);
+        res.render('company/leaderboard',{ title: 'Leaderboard || RateMe', user: req.user, data: result });
+      }).sort({'ratingSum': -1});
 
     });
 
