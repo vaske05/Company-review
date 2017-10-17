@@ -80,15 +80,24 @@
                       <div class="bodyDivCompanies">
                         <h4 style="">Companies</h4>
 
+                        <%
+                          arrayAverage = (arr) => {
+                            return _.reduce(arr, (num1, num2) => {
+                              return num1 + num2;
+                            }, 0) / (arr.length === 0 ? 1 : arr.length);
+                          }
+                        %>
+
                         <% for(var i = 0; i < data.length; i++) { %>
+                          <% var total = arrayAverage(data[i].ratingNumber) %>
                             <div class="col-xs-12 col-md-6 col-lg-4 companyListDiv">
                                 <a href="/company-profile/<%= data[i]._id %>">
                                     <img id="editImage" src="/uploads/<%= data[i].image %>"  alt="companyListItemLogo">
                                     <div class="companyListItemInfo">
                                     <h5 class=""><%= data[i].name %></h5>
                                     <span class="">
-                                        <i class="star" data-score="<%= data[i].ratingSum %>"></i>
-                                        *****
+                                        <i class="star" data-score="<%= total %>"></i>
+                                        (<%= data[i].ratingNumber.length %>)
                                     </span><br>
                                     <i class="fa fa-building-o"> <%= data[i].sector %></i><br>
                                     <i class="fa fa-map-marker"> <%= data[i].city %>,<%= data[i].country %></i>
