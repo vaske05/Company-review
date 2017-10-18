@@ -16,7 +16,6 @@
     <!-- Custom CSS -->
     <link href="../css/simple.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
-
     </head>
 
         <body>
@@ -36,7 +35,7 @@
                         <img src="http://placehold.it/100x100" class="img-responsive img-circle profile_img" alt="">
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2><%= user.fullname %></h2>
+                            <h2><a href="/user/<%= user._id %>"><%= user.fullname %></h2>
                         </div>
                         <li><a href="/home"> <i class="fa fa-home"></i>Home</a></li>
                         <li><a href="/companies"> <i class="fa fa-building-o"></i>Companies</a></li>

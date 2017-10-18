@@ -238,6 +238,11 @@ module.exports = (app, passport) => {
 
     });
 
+    app.get('/user/:id', (req,res) => {
+      res.render('user/user-profile', { title: 'User Profile || RateMe', user: req.user, id: req.params.id });
+
+    });
+
 }
 
 function validateSignup(req,res,next){

@@ -32,7 +32,7 @@ passport.use('local.signup', new LocalStrategy({
         newUser.fullname = req.body.fullname;
         newUser.email = req.body.email;
         newUser.password = newUser.encryptPassword(req.body.password);
-    
+
         newUser.save((err) => {
             return done(null, newUser);
         });
@@ -49,7 +49,7 @@ passport.use('local.login', new LocalStrategy({
         if(err){
             return done(err);
         }
-       
+
         var messages = [];
         if(!user || !user.validPassword(password)) {
             messages.push('Email Does Not Exist Or Password is Invalid');
@@ -63,6 +63,7 @@ passport.use('local.login', new LocalStrategy({
 //Facebook
 passport.use(new FacebookStrategy(secret.facebook, (req, token, refreshToken, profile, done) => {
     User.findOne({facebook:profile.id}, (err,user) => {
+        console.log(profile);
         if(err) {
             return done(err)
         }
@@ -74,11 +75,13 @@ passport.use(new FacebookStrategy(secret.facebook, (req, token, refreshToken, pr
             newUser.facebook = profile.id;
             newUser.fullname = profile.displayName;
             newUser.email = profile._json.email;
+            //newUser.profileImage = profile._json.photos;
             newUser.tokens.push( {token:token} );
+
 
             newUser.save((err) => {
                 return done(null,newUser);
             });
         }
     })
-})) 
+}))

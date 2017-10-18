@@ -87,7 +87,7 @@
                               <div class="innerDiv">
 
                                   <div class="col-md-3" style="margin-bottom:30px;">
-                                      <img src="/uploads/<%= data.image %>" width="250px" height="250px" alt="" style="border: 1px solid #ddd;border-radius: 4px;">
+                                      <img src="/uploads/<%= user.profileImage %>" width="250px" height="250px" alt="" style="border: 1px solid #ddd;border-radius: 4px;">
                                       <h3><%= data.name %></h3>
                                       <i class="fa fa-map-marker"><%= data.city %>, <%= data.country %></i><br>
                                       <i class="fa fa-building-o"><%= data.sector %></i><br>
@@ -141,7 +141,7 @@
                                           <div class="col-md-12 header">
                                               <h2>Reviews (<%= data.ratingNumber.length %>)</h2>
                                               <div class="linkDiv">
-                                                  <a href="" class="btn btn-success">Write Review</a>
+                                                  <a href="/review/<%= data._id %>" class="btn btn-success">Write Review</a>
                                               </div>
                                           </div>
 

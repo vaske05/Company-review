@@ -14,7 +14,10 @@ var userSchema = mongoose.Schema({
     passwordResetToken: { type: String, default: '' },
     passwordResetExpires: { type: Date, default: Date.now },
     facebook: { type: String, default:'' },
-    tokens: Array
+    tokens: Array,
+    profileImage: { type: String, default: 'defaultpic.png' },
+    city: { type: String, default: ''},
+    country: { type: String, default: ''}
 });
 
 //Encryption for password
