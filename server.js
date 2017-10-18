@@ -48,6 +48,7 @@ app.locals._ = _;
 require('./routes/user')(app, passport);
 require('./routes/company')(app);
 require('./routes/review')(app);
+require('./routes/message')(app);
 
 var port = 3000;
 app.listen(port, function(){

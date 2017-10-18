@@ -77,43 +77,25 @@
                           <ul>
                               <li><a href="/home">Home</a></li>
                               <li><a>|</a></li>
-                              <li><a href="/company-profile/<%= data._id %>">Company</a></li>
+                              <li><a href="/companies">Companies</a></li>
                               <li><a>|</a></li>
-                              <li><a href="">Employees</a></li>
+                              <li><a href="#">Find a Company</a></li>
                           </ul>
                       </div>
 
                       <div class="bodyDiv">
-                        <h4 style="">Company Employees</h4>
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Full Name</th>
-                              <th>Position</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% if(data.employees.length > 0) { %>
-                              <% data.employees.forEach(function(val){ %>
-                                <tr style="height:10px;">
-                                  <td><%= val.employeeFullName %></td>
-                                  <td><%= val.employeeRole %></td>
-                                  <td style="width:100px;"><a href="/message/<%= val.employeeID %>" class="btn btn-primary" style="margin:0 0 0 0;">Send Message</a></td>
-                                </tr>
-                              <% }) %>
-                            <% } else { %>
-                              <tr>
-                                <td><p>No registered employee yet.</p></td>
-                                <td><p>-</p></td>
-                                <td><p>-</p></td>
-                              </tr>
-                            <% } %>
-                          </tbody>
-                        </table>
+                        <h4 style="">Find a Company</h4>
 
-
+                        <form class="" action="/search" method="POST">
+                          <div class="form-group">
+                            <input type="text" name="search" class="form-control" placeholder="Type company name." style="margin-bottom:20px">
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" id="search" class="form-control btn btn-primary" value="Search">
+                          </div>
+                        </form>
                       </div>
+
                   </div>
               </div>
             </div>
