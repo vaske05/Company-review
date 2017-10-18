@@ -4,7 +4,7 @@ var async = require('async');
 
 module.exports = (app) => {
 
-  app.get('/message/:id', (req, res) => {
+  app.get('/message/:id', (req, res) => { //Get messagesS from database
     async.parallel([
       function(callback){
         User.findById({ '_id': req.params.id }, (err, result) => {
@@ -19,12 +19,12 @@ module.exports = (app) => {
     ], function(err, results){
         var data = results[0];
         var messages = results[1];
-        
+
         res.render('messages/message', {title:'Private Message', user: req.user, data: data, chats: messages});
     });
   });
 
-  app.post('/message/:id', (req, res) => {
+  app.post('/message/:id', (req, res) => { //Save message to database.
 
     User.findOne({'_id': req.params.id}, (err, data) => {
       var newMessage = new Message();

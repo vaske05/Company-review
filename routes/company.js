@@ -152,19 +152,28 @@ module.exports = (app) => {
     });
 
     app.get('/search', (req,res) => {
-      res.render('company/search', { title: 'Search || RateMe', user: req.user});
+      var info = req.flash('info');
+
+      res.render('company/search', { title: 'Search || RateMe', user: req.user, info: info, noInfo: info.length > 0});
     });
 
     app.post('/search', (req, res) => {
       var name = req.body.search;
       var regex = new RegExp(name, 'i');
 
-      Company.find({'$or':[{'name': regex}]}, (err, data) => {
-        if(err){
-          console.log(err);
+      Company.find({'$or':[{'name': regex}]}, (error, data) => {
+        //console.log("ERROR:" + error);
+        //console.log("DATA:" + data);
+        if(data.length != 0){
+          res.redirect('/company-profile/' + data[0]._id);
+        }
+        else {
+
+          req.flash('info', 'Company not found.Please try modifying your search.');
+          res.redirect('/search');
         }
 
-        res.redirect('/company-profile/' + data[0]._id);
+
       });
 
     });

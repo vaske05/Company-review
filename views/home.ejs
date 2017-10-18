@@ -60,12 +60,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Brand</a>
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-bars"></i></a>
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right nav_bar">
+                              <li><a href="#"><%= user.fullname %></a></li>
                             </ul>
                             </div><!-- /.navbar-collapse -->
                         </div><!-- /.container-fluid -->
@@ -74,7 +75,7 @@
 
                     <div class="container-fluid main_body">
 
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+
                         <h1>Hello, <%= user.fullname %></h1>
                         <p>What would you like to do today?</p>
 
@@ -93,7 +94,7 @@
                                 <h3 class="text-center">Search</h3>
                                 <p class="text-center">Search through our business catalogue and find your best partner.</p>
 
-                                <a href="/company/search" class="btn btn-block btn-primary link_btn">Search</a>
+                                <a href="/search" class="btn btn-block btn-primary link_btn">Search</a>
                             </div>
 
                             <div class="col-md-4" id="colDesc">

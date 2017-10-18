@@ -100,7 +100,7 @@
                                   <div class="header2">
                                     <strong class="primary-font"> <%= val.userFromName %> </strong>
                                     <small class="pull-right">
-                                      <span class=""></span><%= val.createdAt %>
+                                      <span class=""></span><%= moment(val.createdAt).format('LLL') %>
                                     </small>
                                   </div>
                                   <p><%= val.body %></p>
@@ -133,5 +133,6 @@
             </script>
             <script src="/js/rating.js" type="text/javascript"></script>
             <script src="/js/chat.js" type="text/javascript"></script>
+            <script src="/js/moment.js" type="text/javascript"></script>
             </body>
 </html>
