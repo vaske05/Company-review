@@ -15,7 +15,7 @@ var userSchema = mongoose.Schema({
     passwordResetExpires: { type: Date, default: Date.now },
     facebook: { type: String, default:'' },
     tokens: Array,
-    profileImage: { type: String, default: 'defaultpic.png' },
+    profileImage: { type: String, default: 'user-default.png' },
     city: { type: String, default: ''},
     country: { type: String, default: ''}
 });

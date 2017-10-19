@@ -243,6 +243,23 @@ module.exports = (app, passport) => {
 
     });
 
+    app.post('/user/:id', (req,res) => {
+      User.update({'_id': req.params.id},
+          {$set: {
+             'fullname': req.body.fullName ,
+             'city': req.body.city ,
+             'country': req.body.country ,
+             'profileImage': req.body.upload
+          }}, function(err, result) {
+                if(err){
+                  console.log("ERROR u UPDATE PROFILE" + err);
+                }
+                res.redirect('/user/' + req.params.id);
+
+          });
+
+    });
+
 }
 
 function validateSignup(req,res,next){
