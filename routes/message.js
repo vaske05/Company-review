@@ -17,8 +17,8 @@ module.exports = (app) => {
         });
       }
     ], function(err, results){
-        var data = results[0];
-        var messages = results[1];
+        var data = results[0]; //iz prve funkcije
+        var messages = results[1]; //iz druge funkcije
 
         res.render('messages/message', {title:'Private Message', user: req.user, data: data, chats: messages});
     });
@@ -28,6 +28,8 @@ module.exports = (app) => {
 
     User.findOne({'_id': req.params.id}, (err, data) => {
       var newMessage = new Message();
+
+      
       newMessage.userFrom = req.user._id;
       newMessage.userTo = req.params.id;
       newMessage.userFromName = req.user.fullname; //req.user = Ulogovani korisnik
