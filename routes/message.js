@@ -29,11 +29,12 @@ module.exports = (app) => {
     User.findOne({'_id': req.params.id}, (err, data) => {
       var newMessage = new Message();
 
-      
+      newMessage.userFromImage = req.user.profileImage;
+      newMessage.userToImage = data.profileImage;
       newMessage.userFrom = req.user._id;
       newMessage.userTo = req.params.id;
       newMessage.userFromName = req.user.fullname; //req.user = Ulogovani korisnik
-      newMessage.userToName = data.fullname;
+      newMessage.userToName = data.fullname; //data.fullname = Ime korisnika kome saljemo poruku
       newMessage.body = req.body.message;
       newMessage.createdAt = new Date();
 
