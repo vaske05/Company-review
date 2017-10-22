@@ -5,16 +5,16 @@ $(document).ready(function(){
   $('#editBtn').on('click', function(){
     if(clickedValue == 0){
       $('#fullName').removeAttr('readOnly');
-      $('#company').removeAttr('readOnly');
-      $('#role').removeAttr('readOnly');
+      //$('#company').removeAttr('readOnly');
+      //$('#role').removeAttr('readOnly');
       $('#country').removeAttr('readOnly');
       $('#city').removeAttr('readOnly');
       clickedValue = 1;
     }
     else {
       $('#fullName').attr('readOnly','true');
-      $('#company').attr('readOnly','true');
-      $('#role').attr('readOnly','true');
+      //$('#company').attr('readOnly','true');
+      //$('#role').attr('readOnly','true');
       $('#country').attr('readOnly','true');
       $('#city').attr('readOnly','true');
       clickedValue = 0;

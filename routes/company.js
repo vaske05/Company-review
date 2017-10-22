@@ -172,10 +172,7 @@ module.exports = (app) => {
           req.flash('info', 'Company not found.Please try modifying your search.');
           res.redirect('/search');
         }
-
-
       });
-
     });
 
 }
