@@ -97,7 +97,7 @@
                             <% if(data.employees.length > 0) { %>
                               <% data.employees.forEach(function(val){ %>
                                 <tr style="height:10px;">
-                                  <td><%= val.employeeFullName %></td>
+                                  <td><a href="<%=val.employeeID %>"><%= val.employeeFullName %></a></td>
                                   <td><%= val.employeeRole %></td>
                                   <td style="width:100px;"><a href="/message/<%= val.employeeID %>" class="btn btn-primary" style="margin:0 0 0 0;">Send Message</a></td>
                                 </tr>

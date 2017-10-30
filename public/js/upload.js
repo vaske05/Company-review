@@ -1,13 +1,13 @@
 $(document).ready(function(){
     $('.upload-btn').on('click', function() {
         $('#upload-input').click();
-        
+
         $('.progress-bar').text('0%');
         $('.progress-bar').width('0%');
     });
 
     $('#upload-input').on('change', function() {
-        var uploadInput = $('#upload-input')
+        var uploadInput = $('#upload-input');
 
         if(uploadInput.val() != ''){
             var formData = new FormData();
@@ -20,6 +20,7 @@ $(document).ready(function(){
                 processData: false,
                 contentType: false,
                 success: function(data){
+                  console.log("Uslo u success");
                     uploadInput.val('');
                 },
 

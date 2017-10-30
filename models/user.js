@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     role: { type: String, default: '' },
     company: {
         name: { type: String, default: '' },
-        image: { type: String, default: '' }
+        image: { type: String, default: 'user-default.png' }
     },
     passwordResetToken: { type: String, default: '' },
     passwordResetExpires: { type: Date, default: Date.now },
