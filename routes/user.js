@@ -250,7 +250,7 @@ module.exports = (app, passport) => {
                'fullname': req.body.fullName ,
                'city': req.body.city ,
                'country': req.body.country ,
-               'profileImage': req.body.upload
+               //'profileImage': req.body.upload
 
             }}, function(err, result) {
                   if(err){
@@ -282,11 +282,21 @@ module.exports = (app, passport) => {
 
         form.on('end', () => {
             console.log('File was uploaded successfull!');
+
+            User.update({'_id': req.params.id},
+                  {$set: {
+                     'profileImage': req.body.upload
+
+                  }}, function(err, result) {
+                        if(err){
+                          console.log("ERROR u UPDATE PROFILE" + err);
+                        }
+                        res.redirect('/user/' + req.params.id);
+
+            });
         });
 
         form.parse(req);
-
-
     });
 
 }

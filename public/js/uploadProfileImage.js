@@ -1,12 +1,12 @@
 $(document).ready(function(){
-    $('.upload-btn').on('click', function() {
-        $('#upload-input').click();
+    $('.upload-btnPI').on('click', function() {
+        $('#upload-inputPI').click();
 
         $('.progress-bar').text('0%');
         $('.progress-bar').width('0%');
     });
 
-    $('#upload-input').on('change', function() {
+    $('#upload-inputPI').on('change', function() {
         var uploadInput = $('#upload-input');
 
         if(uploadInput.val() != ''){
