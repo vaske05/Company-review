@@ -14,7 +14,7 @@ $(document).ready(function(){
             formData.append('upload', uploadInput[0].files[0]);
 
             $.ajax({
-                url:'/upload',
+                url:'/uploadProfileImage',
                 type:'POST',
                 data: formData,
                 processData: false,

@@ -261,6 +261,34 @@ module.exports = (app, passport) => {
             });
     });
 
+    //Snimanje uploadovane slike u folder:uploads
+    app.post('/uploadProfileImage', (req,res) => {
+        var form = new formidable.IncomingForm();
+
+        form.uploadDir = path.join(__dirname,'../public/uploads');
+
+        form.on('file', (field, file) => {
+            fs.rename(file.path, path.join(form.uploadDir,file.name), (err) => {
+                if(err){
+                    throw err;
+                }
+                console.log('File has been renamed');
+            });
+        });
+
+        form.on('error', (err) => {
+            console.log('An error occured:', err);
+        });
+
+        form.on('end', () => {
+            console.log('File was uploaded successfull!');
+        });
+
+        form.parse(req);
+
+
+    });
+
 }
 
 function validateSignup(req,res,next){
