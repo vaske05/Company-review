@@ -107,8 +107,8 @@
                                                           <div class="progress-bar" role="progressbar"></div>
                                                       </div>
 
-                                                      <button class="btn btn-lg upload-btn" type="button" id="uploadButtonPI">Upload File</button>
-                                                      <input type="file" class="form-control" name="upload" id="upload-inputPIw" style="display:none">
+                                                      <button class="btn btn-lg upload-btnPI" type="button" id="uploadButtonPI">Upload File</button>
+                                                      <input type="file" class="form-control" name="upload" id="upload-inputPI" style="display:none">
                                                   </div>
                                               </div>
 
@@ -116,6 +116,7 @@
                                       </div>
                                   </div>
                                   <div class="col-md-9 colDiv3">
+                                    <input type="hidden" id="userID" name="" value="<%= user._id %>">
                                     <a id="editBtn" class="btn btn-info" style="float: right; margin-right: 142px; margin-bottom:7px;">Edit</a><br>
                                     <p style="float:left; margin-right: 7px; margin-top:22px;">Full name: </p>
                                     <input id="fullName" style="width: 80%; margin-bottom: 4px;" type="text" readonly="true" name="fullName" value="<%= user.fullname %>" class="form-control">

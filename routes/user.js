@@ -3,6 +3,10 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var async = require('async');
 
+var path = require('path');
+var fs = require('fs');
+var formidable = require('formidable');
+
 var crypto = require('crypto');
 var User = require('../models/user');
 var secret = require('../secret/secret');
@@ -202,7 +206,7 @@ module.exports = (app, passport) => {
                 });
 
                 var mailOptions = {
-                    to:user.email,
+                    to: user.email,
                     from: 'RateMe'+'<'+secret.auth.user+'>',
                     subject: 'Your password has been updated',
                     text: 'This is the confirmation that you updated the password for: ' + user.email
@@ -264,10 +268,12 @@ module.exports = (app, passport) => {
     //Snimanje uploadovane slike u folder:uploads
     app.post('/uploadProfileImage', (req,res) => {
         var form = new formidable.IncomingForm();
+        var fileName;
 
         form.uploadDir = path.join(__dirname,'../public/uploads');
 
         form.on('file', (field, file) => {
+            fileName = file.name;
             fs.rename(file.path, path.join(form.uploadDir,file.name), (err) => {
                 if(err){
                     throw err;
@@ -280,21 +286,40 @@ module.exports = (app, passport) => {
             console.log('An error occured:', err);
         });
 
-        form.on('end', () => {
-            console.log('File was uploaded successfull!');
+        async.waterfall([
 
-            User.update({'_id': req.params.id},
+          function(callback){
+            form.on('end', () => {
+                console.log('File was uploaded successfuLL!');
+                callback(null);
+            });
+
+          },
+
+          function(callback){
+            console.log("uslo u update profileImage: " + fileName);
+            User.update({'_id': req.user._id},
                   {$set: {
-                     'profileImage': req.body.upload
+                     'profileImage': fileName
 
                   }}, function(err, result) {
                         if(err){
                           console.log("ERROR u UPDATE PROFILE" + err);
+                          callback(err);
                         }
-                        res.redirect('/user/' + req.params.id);
+
+                        res.redirect('/user/' + req.user._id);
 
             });
-        });
+          }
+
+        ], (err) =>{
+            if(err){
+                return next(err);
+                console.log("Error waterfall: " + err)
+            }
+            console.log("Error waterfall: " + err)
+        })
 
         form.parse(req);
     });

@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
 
     $('#upload-inputPI').on('change', function() {
-        var uploadInput = $('#upload-input');
+        var uploadInput = $('#upload-inputPI');
 
         if(uploadInput.val() != ''){
             var formData = new FormData();
