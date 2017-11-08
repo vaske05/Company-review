@@ -1,4 +1,0 @@
-1. u cmd kucam: npm init
-2. napravim fajl: server.js
-3. go to: https://www.npmjs.com/package/express
-4. u cmd kucam: npm install express --save
